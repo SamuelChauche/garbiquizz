@@ -30,6 +30,28 @@ npm run dev    # http://127.0.0.1:5173
 npm run build  # bundle de prod dans dist/
 ```
 
+## Déploiement
+
+Le site est déployé automatiquement sur **GitHub Pages** à chaque push sur `main`
+via le workflow `.github/workflows/deploy.yml`.
+
+URL : <https://samuelchauche.github.io/garbiquizz/>
+
+### Activation initiale (à faire une seule fois)
+
+1. Aller dans **Settings → Pages** sur le repo GitHub.
+2. Sous *Build and deployment*, choisir **Source : GitHub Actions**.
+3. Pousser sur `main` — le workflow build et déploie tout seul.
+4. La première build prend ~1 min, l'URL apparaît dans l'onglet Actions.
+
+### Comment ça marche
+
+- `vite.config.js` applique `base: '/garbiquizz/'` uniquement en build prod (le dev
+  reste sur `/`).
+- Le workflow `deploy.yml` install les deps, run `npm run build`, upload `dist/`
+  comme artefact, puis le job `deploy` publie via `actions/deploy-pages@v4`.
+- Aucun secret à configurer.
+
 ## Structure
 
 ```

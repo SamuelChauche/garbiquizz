@@ -2,7 +2,10 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'node:path';
 
-export default defineConfig({
+// Le repo est servi sur https://samuelchauche.github.io/garbiquizz/
+// donc le base path en prod doit être /garbiquizz/. En dev on garde /.
+export default defineConfig(({ command }) => ({
+  base: command === 'build' ? '/garbiquizz/' : '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -19,4 +22,4 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
   },
-});
+}));
