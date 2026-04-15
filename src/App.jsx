@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { Home } from '@/components/Home';
 import { Quiz } from '@/components/Quiz';
 import { Results } from '@/components/Results';
@@ -8,6 +8,10 @@ export default function App() {
   const [phase, setPhase] = useState('home'); // 'home' | 'quiz' | 'results'
   const [session, setSession] = useState(null);
   const [version, setVersion] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [phase, version]);
 
   const start = useCallback(() => {
     const s = createSession();

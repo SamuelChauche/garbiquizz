@@ -46,103 +46,79 @@ export function boatOverview({ highlight } = {}) {
     fill="${HULL}" stroke="${hi('quille')}" stroke-width="${hiW('quille')}"/>
   <!-- rudder -->
   <rect x="478" y="296" width="5" height="40" fill="${HULL}" stroke="${hi('safran')}" stroke-width="${hiW('safran')}"/>
-  <!-- bow indicator -->
+  <!-- bow indicator (no text label to avoid revealing answers) -->
   <circle cx="98" cy="285" r="3" fill="${ACCENT}"/>
-  <text x="92" y="310" font-family="serif" font-size="11" fill="${STROKE}">étrave</text>
-  <text x="498" y="310" font-family="serif" font-size="11" fill="${STROKE}">poupe</text>
+  <path d="M 80 280 L 70 280 M 75 275 L 70 280 L 75 285" stroke="${ACCENT}" stroke-width="1.5" fill="none"/>
 </svg>`;
 }
 
 export function boatTopView() {
+  // Vue de dessus avec couleurs visuelles, sans aucune légende texte.
   return `
-<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vue de dessus du bateau, tribord vert et bâbord rouge">
+<svg viewBox="0 0 500 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vue de dessus d'un bateau">
   <ellipse cx="250" cy="110" rx="190" ry="60" fill="${HULL}" opacity="0.08"/>
   <path d="M 70 110 Q 100 60 250 50 Q 400 60 430 110 Q 400 160 250 170 Q 100 160 70 110 Z"
-    fill="none" stroke="${STROKE}" stroke-width="2"/>
+    fill="${SAIL}" stroke="${STROKE}" stroke-width="2"/>
   <line x1="70" y1="110" x2="430" y2="110" stroke="${STROKE}" stroke-width="0.6" stroke-dasharray="4 3"/>
-  <!-- starboard (right when looking forward = upper half here, since bow is right) -->
-  <path d="M 250 50 Q 400 60 430 110" fill="none" stroke="#1f8a3a" stroke-width="6"/>
-  <path d="M 70 110 Q 100 60 250 50" fill="none" stroke="#1f8a3a" stroke-width="6"/>
-  <!-- port (left when looking forward = lower half) -->
-  <path d="M 250 170 Q 400 160 430 110" fill="none" stroke="#c43d3d" stroke-width="6"/>
-  <path d="M 70 110 Q 100 160 250 170" fill="none" stroke="#c43d3d" stroke-width="6"/>
-  <!-- bow arrow -->
-  <path d="M 430 110 L 460 110 M 450 100 L 460 110 L 450 120" stroke="${ACCENT}" stroke-width="2" fill="none"/>
-  <text x="465" y="114" font-family="serif" font-size="12" fill="${STROKE}">avant</text>
-  <text x="240" y="40" font-family="serif" font-size="12" fill="#1f8a3a">tribord</text>
-  <text x="240" y="190" font-family="serif" font-size="12" fill="#c43d3d">bâbord</text>
+  <path d="M 70 110 Q 100 60 250 50 Q 400 60 430 110" fill="none" stroke="#1f8a3a" stroke-width="6"/>
+  <path d="M 70 110 Q 100 160 250 170 Q 400 160 430 110" fill="none" stroke="#c43d3d" stroke-width="6"/>
+  <path d="M 430 110 L 470 110 M 458 98 L 470 110 L 458 122" stroke="${ACCENT}" stroke-width="2.5" fill="none"/>
+  <circle cx="250" cy="110" r="6" fill="${ACCENT}" opacity="0.7"/>
 </svg>`;
 }
 
-export function sailAnatomy() {
+export function sailAnatomy({ marker } = {}) {
+  // marker: 'guindant' | 'chute' | 'bordure' | 'amure' | 'ecoute' | 'drisse' to highlight a specific feature
+  const isGuindant = marker === 'guindant';
+  const isChute = marker === 'chute';
+  const isBordure = marker === 'bordure';
+  const dot = (where) => marker === where ? ACCENT : STROKE;
   return `
-<svg viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomie d'une voile : guindant, chute, bordure, points">
+<svg viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Anatomie d'une voile">
   <path d="M 90 50 Q 140 180 320 320 L 90 320 Z" fill="${SAIL}" stroke="${STROKE}" stroke-width="2"/>
-  <!-- guindant -->
-  <line x1="90" y1="50" x2="90" y2="320" stroke="${ACCENT}" stroke-width="3"/>
-  <!-- chute -->
-  <path d="M 90 50 Q 140 180 320 320" stroke="${ACCENT}" stroke-width="3" fill="none" stroke-dasharray="6 3"/>
-  <!-- bordure -->
-  <line x1="90" y1="320" x2="320" y2="320" stroke="${ACCENT}" stroke-width="3" stroke-dasharray="2 3"/>
-  <!-- points -->
-  <circle cx="90" cy="50" r="5" fill="${STROKE}"/>
-  <circle cx="90" cy="320" r="5" fill="${STROKE}"/>
-  <circle cx="320" cy="320" r="5" fill="${STROKE}"/>
-  <text x="20" y="44" font-family="serif" font-size="13" fill="${STROKE}">point de drisse</text>
-  <text x="14" y="335" font-family="serif" font-size="13" fill="${STROKE}">point d'amure</text>
-  <text x="270" y="345" font-family="serif" font-size="13" fill="${STROKE}">point d'écoute</text>
-  <text x="40" y="200" font-family="serif" font-size="13" fill="${ACCENT}">guindant</text>
-  <text x="220" y="180" font-family="serif" font-size="13" fill="${ACCENT}">chute</text>
-  <text x="180" y="345" font-family="serif" font-size="13" fill="${ACCENT}">bordure</text>
+  <line x1="90" y1="50" x2="90" y2="320" stroke="${isGuindant ? ACCENT : STROKE}" stroke-width="${isGuindant ? 5 : 2}"/>
+  <path d="M 90 50 Q 140 180 320 320" stroke="${isChute ? ACCENT : STROKE}" stroke-width="${isChute ? 5 : 2}" fill="none"/>
+  <line x1="90" y1="320" x2="320" y2="320" stroke="${isBordure ? ACCENT : STROKE}" stroke-width="${isBordure ? 5 : 2}"/>
+  <circle cx="90" cy="50" r="${marker === 'drisse' ? 8 : 5}" fill="${dot('drisse')}"/>
+  <circle cx="90" cy="320" r="${marker === 'amure' ? 8 : 5}" fill="${dot('amure')}"/>
+  <circle cx="320" cy="320" r="${marker === 'ecoute' ? 8 : 5}" fill="${dot('ecoute')}"/>
 </svg>`;
 }
 
 export function riggingDiagram() {
   return `
-<svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gréement dormant : étai, pataras, haubans">
+<svg viewBox="0 0 360 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Gréement dormant d'un sloop">
   <line x1="60" y1="320" x2="300" y2="320" stroke="${STROKE}" stroke-width="2"/>
   <line x1="180" y1="40" x2="180" y2="320" stroke="${STROKE}" stroke-width="5"/>
-  <line x1="180" y1="50" x2="80" y2="318" stroke="${ACCENT}" stroke-width="2"/>
-  <line x1="180" y1="50" x2="280" y2="318" stroke="${ACCENT}" stroke-width="2"/>
+  <line x1="180" y1="50" x2="80" y2="318" stroke="${STROKE}" stroke-width="2"/>
+  <line x1="180" y1="50" x2="280" y2="318" stroke="${STROKE}" stroke-width="2"/>
   <line x1="180" y1="100" x2="120" y2="320" stroke="${STROKE}" stroke-width="1.5"/>
   <line x1="180" y1="100" x2="240" y2="320" stroke="${STROKE}" stroke-width="1.5"/>
-  <text x="35" y="335" font-family="serif" font-size="12" fill="${ACCENT}">étai</text>
-  <text x="285" y="335" font-family="serif" font-size="12" fill="${ACCENT}">pataras</text>
-  <text x="125" y="335" font-family="serif" font-size="12" fill="${STROKE}">hauban</text>
-  <text x="200" y="335" font-family="serif" font-size="12" fill="${STROKE}">hauban</text>
-  <text x="190" y="40" font-family="serif" font-size="12" fill="${STROKE}">tête de mât</text>
+  <circle cx="180" cy="40" r="3" fill="${ACCENT}"/>
 </svg>`;
 }
 
 export function navLights() {
   return `
-<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Feux de navigation">
+<svg viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Feux de navigation d'un voilier">
   <ellipse cx="180" cy="110" rx="120" ry="50" fill="none" stroke="${STROKE}" stroke-width="2"/>
-  <circle cx="60" cy="110" r="10" fill="#c43d3d"/>
-  <circle cx="300" cy="110" r="10" fill="#1f8a3a"/>
-  <circle cx="180" cy="160" r="10" fill="#fff" stroke="${STROKE}" stroke-width="1.5"/>
-  <text x="40" y="90" font-family="serif" font-size="12" fill="#c43d3d">bâbord</text>
-  <text x="280" y="90" font-family="serif" font-size="12" fill="#1f8a3a">tribord</text>
-  <text x="160" y="190" font-family="serif" font-size="12" fill="${STROKE}">poupe (blanc)</text>
-  <path d="M 180 60 L 175 70 L 185 70 Z" fill="${ACCENT}"/>
-  <text x="170" y="50" font-family="serif" font-size="11" fill="${STROKE}">avant</text>
+  <circle cx="60" cy="110" r="12" fill="#c43d3d"/>
+  <circle cx="300" cy="110" r="12" fill="#1f8a3a"/>
+  <circle cx="180" cy="160" r="12" fill="#fff" stroke="${STROKE}" stroke-width="1.5"/>
+  <path d="M 180 50 L 173 65 L 187 65 Z" fill="${ACCENT}"/>
 </svg>`;
 }
 
 export function cockpit() {
   return `
-<svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cockpit avec winch et taquets">
+<svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Espace de manœuvre avec deux treuils et un coinceur">
   <rect x="40" y="70" width="300" height="120" rx="8" fill="none" stroke="${STROKE}" stroke-width="2"/>
   <rect x="80" y="90" width="220" height="80" rx="4" fill="${HULL}" opacity="0.08"/>
-  <circle cx="110" cy="110" r="14" fill="none" stroke="${ACCENT}" stroke-width="3"/>
-  <circle cx="110" cy="110" r="6" fill="${ACCENT}"/>
-  <circle cx="270" cy="110" r="14" fill="none" stroke="${ACCENT}" stroke-width="3"/>
-  <circle cx="270" cy="110" r="6" fill="${ACCENT}"/>
-  <text x="90" y="140" font-family="serif" font-size="11" fill="${STROKE}">winch</text>
-  <text x="250" y="140" font-family="serif" font-size="11" fill="${STROKE}">winch</text>
-  <rect x="170" y="150" width="40" height="10" rx="2" fill="${STROKE}"/>
-  <text x="155" y="178" font-family="serif" font-size="11" fill="${STROKE}">taquet coinceur</text>
-  <text x="160" y="60" font-family="serif" font-size="12" fill="${STROKE}">cockpit</text>
+  <circle cx="110" cy="110" r="16" fill="none" stroke="${ACCENT}" stroke-width="3"/>
+  <circle cx="110" cy="110" r="7" fill="${ACCENT}"/>
+  <circle cx="270" cy="110" r="16" fill="none" stroke="${ACCENT}" stroke-width="3"/>
+  <circle cx="270" cy="110" r="7" fill="${ACCENT}"/>
+  <rect x="170" y="150" width="40" height="12" rx="2" fill="${STROKE}"/>
 </svg>`;
 }
 
