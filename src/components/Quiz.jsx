@@ -186,44 +186,52 @@ export function Quiz({ session, onComplete, version }) {
           </Button>
         </div>
       )}
+    </div>
+  );
 
-      {feedback && (
-        <Card
+  const feedbackPanel = feedback && (
+    <Card
+      className={cn(
+        'border-l-4 animate-slide-up overflow-hidden',
+        feedback.correct ? 'border-l-icy_aqua-200' : 'border-l-powder_blush-300',
+      )}
+    >
+      <CardContent className="pt-6 grid gap-4">
+        <p
           className={cn(
-            'border-l-4 animate-slide-up',
-            feedback.correct ? 'border-l-icy_aqua-200' : 'border-l-powder_blush-300',
+            'font-serif text-2xl md:text-3xl font-medium flex items-center gap-3 leading-tight',
+            feedback.correct ? 'text-icy_aqua-200' : 'text-powder_blush-200',
           )}
         >
-          <CardContent className="pt-6 grid gap-3">
-            <p
-              className={cn(
-                'font-serif text-xl font-medium flex items-center gap-2',
-                feedback.correct ? 'text-icy_aqua-200' : 'text-powder_blush-200',
-              )}
-            >
-              {feedback.correct ? (
-                <>
-                  <Check className="h-5 w-5" />
-                  Bonne réponse !
-                </>
-              ) : (
-                <>
-                  <X className="h-5 w-5" />
-                  La bonne réponse était : <em className="not-italic font-semibold">{feedback.expected}</em>
-                </>
-              )}
-            </p>
-            <p className="text-sm text-muted-foreground leading-relaxed">{feedback.explanation}</p>
-            <div className="flex justify-end pt-2">
-              <Button ref={nextBtnRef} onClick={handleNext} variant="default">
-                {isLast ? 'Voir le score' : 'Question suivante'}
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      )}
-    </div>
+          {feedback.correct ? (
+            <>
+              <Check className="h-7 w-7 flex-shrink-0" />
+              Bonne réponse !
+            </>
+          ) : (
+            <>
+              <X className="h-7 w-7 flex-shrink-0" />
+              <span>
+                La bonne réponse était :{' '}
+                <em className="not-italic font-semibold text-foreground">{feedback.expected}</em>
+              </span>
+            </>
+          )}
+        </p>
+        <p className="font-serif italic text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl">
+          {feedback.explanation}
+        </p>
+        <Button
+          ref={nextBtnRef}
+          onClick={handleNext}
+          size="lg"
+          className="w-full justify-center mt-2"
+        >
+          {isLast ? 'Voir le score' : 'Question suivante'}
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+      </CardContent>
+    </Card>
   );
 
   const tierRoman = TIER_ROMAN[q.difficulty];
@@ -255,7 +263,7 @@ export function Quiz({ session, onComplete, version }) {
       </header>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10 items-start">
-        <figure className="m-0 lg:sticky lg:top-6 self-start">
+        <figure className="m-0 self-start">
           <div
             className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(38,40,46,0.05),0_25px_60px_-30px_rgba(38,40,46,0.35)]"
           >
@@ -270,6 +278,8 @@ export function Quiz({ session, onComplete, version }) {
         </figure>
         {content}
       </div>
+
+      {feedbackPanel}
     </section>
   );
 }
