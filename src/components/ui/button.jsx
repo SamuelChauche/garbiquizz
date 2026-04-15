@@ -11,6 +11,8 @@ const buttonVariants = cva(
           'bg-primary text-primary-foreground shadow hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg',
         cta:
           'bg-icy_aqua-200 text-eggshell shadow hover:bg-icy_aqua-100 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(27,145,121,0.55)]',
+        salmon:
+          'bg-powder_blush text-blue_slate-100 shadow hover:bg-powder_blush-400 hover:text-eggshell hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-10px_rgba(255,90,75,0.55)]',
         secondary:
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         outline:

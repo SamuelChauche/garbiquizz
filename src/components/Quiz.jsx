@@ -225,7 +225,7 @@ export function Quiz({ session, onComplete, version }) {
           ref={nextBtnRef}
           onClick={handleNext}
           size="lg"
-          variant="cta"
+          variant="salmon"
           className="w-full justify-center mt-2"
         >
           {isLast ? 'Voir le score' : 'Question suivante'}

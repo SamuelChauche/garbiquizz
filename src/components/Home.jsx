@@ -42,7 +42,7 @@ export function Home({ onStart }) {
             de six mètres. Cinquante questions, quatre paliers, du pont au gréement.
           </p>
           <div className="flex flex-wrap items-center gap-5 pt-2">
-            <Button size="lg" onClick={onStart} autoFocus className="group">
+            <Button size="lg" variant="salmon" onClick={onStart} autoFocus className="group">
               Commencer le quiz
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
