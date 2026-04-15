@@ -9,6 +9,8 @@ const buttonVariants = cva(
       variant: {
         default:
           'bg-primary text-primary-foreground shadow hover:bg-primary/90 hover:-translate-y-0.5 hover:shadow-lg',
+        cta:
+          'bg-icy_aqua-200 text-eggshell shadow hover:bg-icy_aqua-100 hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgba(27,145,121,0.55)]',
         secondary:
           'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
         outline:

@@ -173,6 +173,7 @@ export function Quiz({ session, onComplete, version }) {
           <Button
             ref={validateBtnRef}
             size="lg"
+            variant="cta"
             onClick={handleValidate}
             disabled={
               (q.type === 'mcq4' || q.type === 'mcq3')
@@ -224,6 +225,7 @@ export function Quiz({ session, onComplete, version }) {
           ref={nextBtnRef}
           onClick={handleNext}
           size="lg"
+          variant="cta"
           className="w-full justify-center mt-2"
         >
           {isLast ? 'Voir le score' : 'Question suivante'}
