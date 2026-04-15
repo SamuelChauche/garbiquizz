@@ -4,54 +4,35 @@
 
 @layer base {
   :root {
-    /* Palette mappée en HSL pour les tokens shadcn
-       Référence brute :
-         powder_blush: #ffa69e   → hsl(4 100% 81%)
-         powder_blush-300:#f81500 → hsl(5 100% 49%)
-         eggshell:     #faf3dd   → hsl(48 76% 92%)
-         eggshell-700: #fcf8ea   → hsl(48 80% 95%)
-         eggshell-200: #a38318   → hsl(46 75% 36%)
-         icy_aqua:     #b8f2e6   → hsl(168 70% 84%)
-         icy_aqua-800: #e3faf5   → hsl(166 70% 94%)
-         light_blue:   #aed9e0   → hsl(189 47% 78%)
-         light_blue-800:#def0f3  → hsl(189 53% 91%)
-         blue_slate:   #5e6472   → hsl(222 10% 41%)
-         blue_slate-200:#26282e  → hsl(225 9% 16%)
-         blue_slate-800:#bdc0c9  → hsl(220 10% 76%)
-    */
-
+    /* Palette HSL pour les tokens shadcn (mappée sur powder_blush, eggshell,
+       icy_aqua, light_blue, blue_slate). */
     --background: 48 76% 92%;            /* eggshell */
     --foreground: 225 9% 16%;            /* blue_slate-200 */
-
-    --card: 48 80% 96%;                  /* eggshell-700 lighter */
+    --card: 48 80% 96%;
     --card-foreground: 225 9% 16%;
-
     --popover: 48 80% 96%;
     --popover-foreground: 225 9% 16%;
-
     --primary: 222 10% 41%;              /* blue_slate */
-    --primary-foreground: 48 76% 95%;    /* eggshell light */
-
+    --primary-foreground: 48 76% 95%;
     --secondary: 189 47% 78%;            /* light_blue */
     --secondary-foreground: 225 9% 16%;
-
     --muted: 189 53% 91%;                /* light_blue-800 */
-    --muted-foreground: 222 10% 41%;     /* blue_slate */
-
+    --muted-foreground: 222 10% 41%;
     --accent: 168 70% 84%;               /* icy_aqua */
     --accent-foreground: 222 10% 25%;
-
-    --destructive: 5 100% 49%;           /* powder_blush-300 */
+    --destructive: 5 100% 49%;
     --destructive-foreground: 48 76% 95%;
-
     --success: 168 60% 38%;
     --success-foreground: 48 76% 95%;
-
-    --border: 220 10% 76%;               /* blue_slate-800 */
+    --border: 220 10% 76%;
     --input: 220 10% 76%;
     --ring: 222 10% 41%;
-
     --radius: 0.75rem;
+
+    /* Tracking & rythme éditorial */
+    --tracking-eyebrow: 0.22em;
+    --tracking-tight: -0.02em;
+    --tracking-display: -0.035em;
   }
 
   * {
@@ -60,26 +41,87 @@
 
   html, body {
     @apply bg-background text-foreground antialiased;
-    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1, 'liga' 1;
+    text-rendering: optimizeLegibility;
   }
 
+  /* Atmosphère : ciel + mer + grain de papier */
   body {
     background:
-      radial-gradient(ellipse 1100px 500px at 50% -10%, hsl(168 70% 84% / 0.45), transparent 70%),
-      radial-gradient(ellipse 800px 400px at 100% 100%, hsl(189 47% 78% / 0.35), transparent 70%),
-      radial-gradient(ellipse 700px 400px at 0% 80%, hsl(4 100% 81% / 0.18), transparent 70%),
+      radial-gradient(ellipse 1200px 600px at 50% -8%, hsl(168 70% 84% / 0.55), transparent 70%),
+      radial-gradient(ellipse 900px 500px at 110% 100%, hsl(189 47% 78% / 0.45), transparent 70%),
+      radial-gradient(ellipse 700px 400px at -10% 80%, hsl(4 100% 81% / 0.18), transparent 70%),
       hsl(var(--background));
     background-attachment: fixed;
     min-height: 100vh;
+    position: relative;
+  }
+
+  /* grain de papier (SVG noise) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.16;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05  0 0 0 0 0.13  0 0 0 0 0.18  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  #app, main {
+    position: relative;
+    z-index: 1;
   }
 
   h1, h2, h3 {
-    @apply font-serif tracking-tight;
+    @apply font-serif;
+    letter-spacing: var(--tracking-tight);
+  }
+
+  /* Sélection éditoriale */
+  ::selection {
+    background: hsl(168 70% 84% / 0.7);
+    color: hsl(225 9% 12%);
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Eyebrow editorial : rule + uppercase grotesque */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase text-muted-foreground;
+    letter-spacing: var(--tracking-eyebrow);
+  }
+  .eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  /* Numérotation display */
+  .numeral {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-weight: 500;
+    font-feature-settings: 'lnum' 1;
+    letter-spacing: var(--tracking-display);
+  }
+
+  /* Filet horizontal éditorial */
+  .editorial-rule {
+    border: 0;
+    border-top: 1px solid hsl(var(--border));
+    margin: 0;
+  }
+  .editorial-rule-strong {
+    border-top: 1.5px solid hsl(var(--foreground) / 0.4);
   }
 }

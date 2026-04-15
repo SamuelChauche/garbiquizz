@@ -9,6 +9,10 @@
 //
 // Catégories :
 //   'coque-pont', 'greement-voilure', 'accastillage-manoeuvre', 'interieur-securite'
+//
+// Champs d'illustration :
+//   illustration : clé dans ILLUSTRATIONS (illustrations.js)
+//   highlight    : nom d'une zone à mettre en couleur sur l'illustration
 
 export const CATEGORIES = {
   'coque-pont': 'Coque & pont',
@@ -32,7 +36,7 @@ export const QUESTIONS = [
     choices: ['Poupe', 'Étrave', 'Quille', 'Davier'],
     answer: 'Étrave',
     explanation: "L'étrave est la pièce avant qui fend l'eau, du livet de pont à la quille.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'etrave',
   },
   {
     id: 'q02', category: 'coque-pont', difficulty: 1, type: 'mcq4',
@@ -40,14 +44,15 @@ export const QUESTIONS = [
     choices: ['Étrave', 'Poupe', 'Étambot', 'Hiloire'],
     answer: 'Poupe',
     explanation: "La poupe est l'arrière du bateau, par opposition à la proue (l'avant).",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'poupe',
   },
   {
     id: 'q03', category: 'coque-pont', difficulty: 1, type: 'mcq4',
     question: "En regardant vers l'avant, le côté droit du bateau s'appelle ?",
     choices: ['Bâbord', 'Tribord', 'Au vent', 'Sous le vent'],
     answer: 'Tribord',
-    explanation: "Tribord = droite. Repère nocturne : feu vert. Astuce mnémotechnique : « bâbord » = « BAtterie » = rouge à gauche, donc tribord est l'autre côté (droite, vert).",
+    explanation: "Tribord = droite. Repère nocturne : feu vert. Astuce : « bâbord » = « BAtterie » = rouge à gauche, donc tribord est l'autre côté (droite, vert).",
+    illustration: 'boat_top', highlight: 'tribord',
   },
   {
     id: 'q04', category: 'coque-pont', difficulty: 1, type: 'mcq4',
@@ -55,6 +60,7 @@ export const QUESTIONS = [
     choices: ['Tribord', 'Bâbord', 'Poupe', 'Bouchain'],
     answer: 'Bâbord',
     explanation: "Bâbord = gauche. Astuce : « BÂbord » comme « BAtterie » rouge. Feu de navigation rouge la nuit.",
+    illustration: 'boat_top', highlight: 'babord',
   },
   {
     id: 'q05', category: 'coque-pont', difficulty: 1, type: 'mcq4',
@@ -62,7 +68,7 @@ export const QUESTIONS = [
     choices: ['Cockpit', 'Carré', 'Roof', 'Pavois'],
     answer: 'Cockpit',
     explanation: "Le cockpit est l'espace creux à l'arrière où se tient le barreur. Sur le Garbi il est petit et auto-videur.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'cockpit',
   },
   {
     id: 'q06', category: 'greement-voilure', difficulty: 1, type: 'mcq4',
@@ -70,7 +76,7 @@ export const QUESTIONS = [
     choices: ['Bôme', 'Étai', 'Mât', 'Hauban'],
     answer: 'Mât',
     explanation: "Le mât est la grande pièce verticale (souvent en aluminium) qui porte les voiles.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'mat',
   },
   {
     id: 'q07', category: 'greement-voilure', difficulty: 1, type: 'mcq4',
@@ -78,7 +84,7 @@ export const QUESTIONS = [
     choices: ['Bôme', 'Drisse', 'Étai', 'Écoute'],
     answer: 'Bôme',
     explanation: "La bôme est l'espar horizontal qui maintient la bordure de la grand-voile.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'bome',
   },
   {
     id: 'q08', category: 'greement-voilure', difficulty: 1, type: 'mcq4',
@@ -86,7 +92,7 @@ export const QUESTIONS = [
     choices: ['Foc', 'Génois', 'Grand-voile', 'Spi'],
     answer: 'Grand-voile',
     explanation: "La grand-voile est la voile principale, hissée le long du mât et tenue par la bôme.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'grand_voile',
   },
   {
     id: 'q09', category: 'greement-voilure', difficulty: 1, type: 'mcq4',
@@ -94,7 +100,7 @@ export const QUESTIONS = [
     choices: ['Grand-voile', 'Foc', 'Tape-cul', 'Voile de cape'],
     answer: 'Foc',
     explanation: "Le foc est la voile d'avant, hissée sur l'étai. Le génois est un foc plus grand.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'foc',
   },
   {
     id: 'q10', category: 'accastillage-manoeuvre', difficulty: 1, type: 'mcq4',
@@ -102,7 +108,7 @@ export const QUESTIONS = [
     choices: ['Quille', 'Gouvernail', 'Dérive', 'Étrave'],
     answer: 'Gouvernail',
     explanation: "Le gouvernail est l'ensemble qui dirige le bateau. Sa partie immergée — le plan vertical articulé — s'appelle plus précisément le safran.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'gouvernail',
   },
   {
     id: 'q11', category: 'accastillage-manoeuvre', difficulty: 1, type: 'mcq4',
@@ -110,6 +116,7 @@ export const QUESTIONS = [
     choices: ['Roue à barre', 'Barre franche', 'Manette', 'Joystick'],
     answer: 'Barre franche',
     explanation: "La barre franche est le levier (souvent en bois ou alu) directement fixé sur la tête de la mèche de safran. Sur les bateaux plus grands on utilise plutôt une roue à barre.",
+    illustration: 'boat_overview', highlight: 'barre_franche',
   },
   {
     id: 'q12', category: 'interieur-securite', difficulty: 1, type: 'mcq4',
@@ -117,6 +124,7 @@ export const QUESTIONS = [
     choices: ['Casquette', 'Gilet de sauvetage', 'Bottes', 'Lampe frontale'],
     answer: 'Gilet de sauvetage',
     explanation: "Un gilet de sauvetage par personne, accessible et adapté, est obligatoire à bord.",
+    illustration: 'lifejacket',
   },
   {
     id: 'q13', category: 'interieur-securite', difficulty: 1, type: 'mcq4',
@@ -124,6 +132,7 @@ export const QUESTIONS = [
     choices: ['Le winch', 'Le safran', "L'ancre", 'La drisse'],
     answer: "L'ancre",
     explanation: "L'ancre, reliée à une chaîne et un orin, accroche le fond et tient le bateau.",
+    illustration: 'anchor',
   },
 
   // ─── PALIER 2 — QCM 3 choix (intermédiaire) ─────────────────────
@@ -133,7 +142,7 @@ export const QUESTIONS = [
     choices: ['Pavois', 'Hiloire', 'Liston'],
     answer: 'Hiloire',
     explanation: "L'hiloire est le rebord rehaussé qui ceinture le cockpit ou la descente.",
-    illustration: 'boat_overview',
+    illustration: 'boat_overview', highlight: 'hiloire',
   },
   {
     id: 'q15', category: 'coque-pont', difficulty: 2, type: 'mcq3',
@@ -141,6 +150,7 @@ export const QUESTIONS = [
     choices: ['Liston', 'Davier', 'Étambrai'],
     answer: 'Liston',
     explanation: "Le liston est la moulure horizontale qui protège le franc-bord contre les chocs.",
+    illustration: 'boat_overview', highlight: 'liston',
   },
   {
     id: 'q16', category: 'coque-pont', difficulty: 2, type: 'mcq3',
@@ -148,6 +158,7 @@ export const QUESTIONS = [
     choices: ['Davier', 'Étrave', 'Bouchain'],
     answer: 'Davier',
     explanation: "Le davier est une chape à galet en proue qui guide la chaîne d'ancre.",
+    illustration: 'boat_overview', highlight: 'davier',
   },
   {
     id: 'q17', category: 'greement-voilure', difficulty: 2, type: 'mcq3',
@@ -155,7 +166,7 @@ export const QUESTIONS = [
     choices: ['Étais', 'Haubans', 'Drisses'],
     answer: 'Haubans',
     explanation: "Les haubans sont les câbles latéraux du gréement dormant qui tiennent le mât sur les côtés.",
-    illustration: 'rigging',
+    illustration: 'rigging', highlight: 'haubans',
   },
   {
     id: 'q18', category: 'greement-voilure', difficulty: 2, type: 'mcq3',
@@ -163,21 +174,23 @@ export const QUESTIONS = [
     choices: ['Étai', 'Pataras', 'Drisse'],
     answer: 'Étai',
     explanation: "L'étai est le câble fixe qui retient le mât vers l'avant. Le foc s'y endraille.",
-    illustration: 'rigging',
+    illustration: 'rigging', highlight: 'etai',
   },
   {
     id: 'q19', category: 'greement-voilure', difficulty: 2, type: 'mcq3',
     question: "Comment s'appelle le cordage qui sert à hisser une voile ?",
     choices: ['Écoute', 'Drisse', 'Bordure'],
     answer: 'Drisse',
-    explanation: "La drisse hisse la voile (drisse de grand-voile, drisse de foc).",
+    explanation: "La drisse hisse la voile (drisse de grand-voile, drisse de foc). Elle s'attache au point de drisse, en haut de la voile.",
+    illustration: 'sail_anatomy', highlight: 'drisse',
   },
   {
     id: 'q20', category: 'greement-voilure', difficulty: 2, type: 'mcq3',
     question: "Comment s'appelle le cordage qui règle l'ouverture d'une voile ?",
     choices: ['Drisse', 'Écoute', 'Hale-bas'],
     answer: 'Écoute',
-    explanation: "L'écoute est le cordage qui borde ou choque une voile pour l'orienter au vent.",
+    explanation: "L'écoute est le cordage qui borde ou choque une voile pour l'orienter au vent. Elle s'attache au point d'écoute, en bas et en arrière de la voile.",
+    illustration: 'sail_anatomy', highlight: 'ecoute',
   },
   {
     id: 'q21', category: 'accastillage-manoeuvre', difficulty: 2, type: 'mcq3',
@@ -185,7 +198,7 @@ export const QUESTIONS = [
     choices: ['Winch', 'Cabestan', 'Poulie'],
     answer: 'Winch',
     explanation: "Le winch est un treuil à manivelle qui démultiplie l'effort sur les écoutes.",
-    illustration: 'cockpit',
+    illustration: 'cockpit', highlight: 'winch',
   },
   {
     id: 'q22', category: 'accastillage-manoeuvre', difficulty: 2, type: 'mcq3',
@@ -193,6 +206,7 @@ export const QUESTIONS = [
     choices: ['Manille', 'Poulie', 'Taquet'],
     answer: 'Poulie',
     explanation: "La poulie (parfois appelée réa) renvoie un cordage en changeant sa direction.",
+    illustration: 'cockpit', highlight: 'poulie',
   },
   {
     id: 'q23', category: 'accastillage-manoeuvre', difficulty: 2, type: 'mcq3',
@@ -200,7 +214,7 @@ export const QUESTIONS = [
     choices: ['Taquet coinceur', 'Manille', 'Cabillot'],
     answer: 'Taquet coinceur',
     explanation: "Le taquet coinceur (ou clamcleat) bloque le cordage par friction sans nœud.",
-    illustration: 'cockpit',
+    illustration: 'cockpit', highlight: 'taquet',
   },
   {
     id: 'q24', category: 'interieur-securite', difficulty: 2, type: 'mcq3',
@@ -208,15 +222,15 @@ export const QUESTIONS = [
     choices: ['Rouge', 'Vert', 'Blanc'],
     answer: 'Vert',
     explanation: "Tribord = vert. Bâbord = rouge. Poupe = blanc.",
-    illustration: 'nav_lights',
+    illustration: 'nav_lights', highlight: 'tribord',
   },
   {
     id: 'q25', category: 'interieur-securite', difficulty: 2, type: 'mcq3',
     question: "De quelle couleur est le feu de navigation à bâbord ?",
     choices: ['Rouge', 'Vert', 'Jaune'],
     answer: 'Rouge',
-    explanation: "Bâbord = rouge. Pour mémoriser : « bâbord » et « rouge » comportent un « r ».",
-    illustration: 'nav_lights',
+    explanation: "Bâbord = rouge. Astuce : « BÂbord » comme « BAtterie ».",
+    illustration: 'nav_lights', highlight: 'babord',
   },
   {
     id: 'q26', category: 'interieur-securite', difficulty: 2, type: 'mcq3',
@@ -224,6 +238,7 @@ export const QUESTIONS = [
     choices: ['Couverture isolante', 'Extincteur', 'Seau'],
     answer: 'Extincteur',
     explanation: "Un extincteur adapté (poudre ou CO₂) est obligatoire selon la catégorie de navigation.",
+    illustration: 'extinguisher',
   },
 
   // ─── PALIER 3 — QCM 3 choix (technique, distracteurs piégeux) ───
@@ -237,6 +252,7 @@ export const QUESTIONS = [
     ],
     answer: 'La partie de la coque qui dépasse au-dessus du pont',
     explanation: "Le pavois est le prolongement vertical de la coque au-dessus du pont. À ne pas confondre avec l'hiloire (autour du cockpit) ni le liston (moulure du flanc).",
+    illustration: 'boat_overview', highlight: 'pavois',
   },
   {
     id: 'q28', category: 'coque-pont', difficulty: 3, type: 'mcq3',
@@ -244,6 +260,7 @@ export const QUESTIONS = [
     choices: ['Étambot', 'Tableau arrière', 'Bouchain'],
     answer: 'Tableau arrière',
     explanation: "Le tableau arrière est la cloison verticale qui termine la poupe. L'étambot est la pièce sous l'eau qui le prolonge.",
+    illustration: 'boat_overview', highlight: 'tableau_arriere',
   },
   {
     id: 'q29', category: 'coque-pont', difficulty: 3, type: 'mcq3',
@@ -255,6 +272,7 @@ export const QUESTIONS = [
     ],
     answer: "La hauteur de coque émergée entre la flottaison et le pont",
     explanation: "Le franc-bord est la distance verticale entre la ligne de flottaison et le pont. Plus il est élevé, plus le bateau est sec.",
+    illustration: 'hull_section', highlight: 'franc_bord',
   },
   {
     id: 'q30', category: 'greement-voilure', difficulty: 3, type: 'mcq3',
@@ -262,7 +280,7 @@ export const QUESTIONS = [
     choices: ['Étai', 'Pataras', 'Bas-hauban'],
     answer: 'Pataras',
     explanation: "Le pataras (ou backstay) part de la tête de mât vers le tableau arrière. Sur le Garbi, il est généralement réglable.",
-    illustration: 'rigging',
+    illustration: 'rigging', highlight: 'pataras',
   },
   {
     id: 'q31', category: 'greement-voilure', difficulty: 3, type: 'mcq3',
@@ -274,7 +292,7 @@ export const QUESTIONS = [
     ],
     answer: 'Le coin avant bas, fixé au pied de mât ou à la bôme',
     explanation: "Trois coins sur une voile triangulaire : point de drisse (haut), point d'amure (avant bas), point d'écoute (arrière bas).",
-    illustration: 'sail_anatomy',
+    illustration: 'sail_anatomy', highlight: 'amure',
   },
   {
     id: 'q32', category: 'greement-voilure', difficulty: 3, type: 'mcq3',
@@ -286,6 +304,7 @@ export const QUESTIONS = [
     ],
     answer: 'On réduit la surface de la grand-voile par mauvais temps',
     explanation: "Prendre un ris = ariser = diminuer la surface exposée au vent en repliant le bas de la grand-voile sur la bôme.",
+    illustration: 'boat_overview', highlight: 'grand_voile',
   },
   {
     id: 'q33', category: 'accastillage-manoeuvre', difficulty: 3, type: 'mcq3',
@@ -297,6 +316,7 @@ export const QUESTIONS = [
     ],
     answer: 'Empêcher la bôme de monter et tenir la chute de la grand-voile',
     explanation: "Le hale-bas tire la bôme vers le bas, ce qui aplatit la voile et améliore sa portance, surtout au près.",
+    illustration: 'boat_overview', highlight: 'hale_bas',
   },
   {
     id: 'q34', category: 'accastillage-manoeuvre', difficulty: 3, type: 'mcq3',
@@ -304,6 +324,7 @@ export const QUESTIONS = [
     choices: ['Chariot', 'Manille', 'Réa'],
     answer: 'Chariot',
     explanation: "Le chariot coulisse sur le rail (la barre d'écoute) et permet de régler la position d'amure du grand-voile en travers.",
+    illustration: 'cockpit',
   },
   {
     id: 'q35', category: 'accastillage-manoeuvre', difficulty: 3, type: 'mcq3',
@@ -315,6 +336,7 @@ export const QUESTIONS = [
     ],
     answer: 'Le rail transversal sur lequel coulisse le chariot d\'écoute',
     explanation: "La barre d'écoute (ou rail d'écoute) traverse le cockpit ou le roof et porte le chariot d'écoute de grand-voile.",
+    illustration: 'cockpit',
   },
   {
     id: 'q36', category: 'interieur-securite', difficulty: 3, type: 'mcq3',
@@ -322,6 +344,7 @@ export const QUESTIONS = [
     choices: ['Cabine arrière', 'Carré', 'Cambuse'],
     answer: 'Carré',
     explanation: "Le carré est la pièce centrale, souvent autour de la table à manger. Sur le Garbi il est très compact.",
+    illustration: 'interior', highlight: 'carre',
   },
   {
     id: 'q37', category: 'interieur-securite', difficulty: 3, type: 'mcq3',
@@ -329,6 +352,7 @@ export const QUESTIONS = [
     choices: ['Cambuse', 'Table à cartes', 'Poste de barre'],
     answer: 'Table à cartes',
     explanation: "La table à cartes est le poste du chef de bord pour la navigation. Sur un 6m, elle est souvent rabattable.",
+    illustration: 'interior', highlight: 'table_a_cartes',
   },
   {
     id: 'q38', category: 'interieur-securite', difficulty: 3, type: 'mcq3',
@@ -340,6 +364,7 @@ export const QUESTIONS = [
     ],
     answer: "Communiquer avec d'autres bateaux et les secours (canal 16)",
     explanation: "La VHF marine est l'outil de communication principal en mer. Le canal 16 est dédié à la veille et à la détresse.",
+    illustration: 'vhf',
   },
 
   // ─── PALIER 4 — Saisie texte (expert) ───────────────────────────
@@ -349,6 +374,7 @@ export const QUESTIONS = [
     answer: 'brion',
     correctAnswers: ['brion', 'le brion'],
     explanation: "Le brion est la courbe basse qui raccorde l'étrave à la quille. À ne pas confondre avec l'étambot, qui est la pièce verticale arrière où s'articulait jadis le gouvernail.",
+    illustration: 'hull_section', highlight: 'brion',
   },
   {
     id: 'q40', category: 'coque-pont', difficulty: 4, type: 'text',
@@ -356,6 +382,7 @@ export const QUESTIONS = [
     answer: 'bouchain',
     correctAnswers: ['bouchain', 'le bouchain'],
     explanation: "Le bouchain est l'arête où le fond rejoint le bordé. Un bouchain « vif » est anguleux, un bouchain « rond » est arrondi.",
+    illustration: 'hull_section', highlight: 'bouchain',
   },
   {
     id: 'q41', category: 'coque-pont', difficulty: 4, type: 'fill',
@@ -363,6 +390,7 @@ export const QUESTIONS = [
     answer: 'étambrai',
     correctAnswers: ['étambrai', 'etambrai', "l'etambrai", "l'étambrai"],
     explanation: "L'étambrai guide le mât au passage du pont. Sur le Garbi, le mât est posé sur le pont avec un étambrai renforcé.",
+    illustration: 'hull_section', highlight: 'etambrai',
   },
   {
     id: 'q42', category: 'greement-voilure', difficulty: 4, type: 'text',
@@ -370,6 +398,7 @@ export const QUESTIONS = [
     answer: 'génois',
     correctAnswers: ['génois', 'genois', 'le genois', 'le génois'],
     explanation: "Le génois est une voile d'avant de grande taille (souvent 130 % à 150 % de la base). Très courant sur les croiseurs côtiers.",
+    illustration: 'boat_overview', highlight: 'foc',
   },
   {
     id: 'q43', category: 'greement-voilure', difficulty: 4, type: 'fill',
@@ -377,6 +406,7 @@ export const QUESTIONS = [
     answer: 'spi',
     correctAnswers: ['spi', 'spinnaker', 'le spi'],
     explanation: "Le spi (spinnaker) est une voile creuse en nylon utilisée aux allures portantes (vent arrière, largue).",
+    illustration: 'spinnaker',
   },
   {
     id: 'q44', category: 'greement-voilure', difficulty: 4, type: 'fill',
@@ -384,7 +414,7 @@ export const QUESTIONS = [
     answer: 'guindant',
     correctAnswers: ['guindant', 'le guindant'],
     explanation: "Trois bords sur une voile : guindant (avant), chute (arrière), bordure (bas). Le guindant longe le mât ou l'étai.",
-    illustration: 'sail_anatomy',
+    illustration: 'sail_anatomy', highlight: 'guindant',
   },
   {
     id: 'q45', category: 'accastillage-manoeuvre', difficulty: 4, type: 'text',
@@ -392,6 +422,7 @@ export const QUESTIONS = [
     answer: 'manille',
     correctAnswers: ['manille', 'la manille'],
     explanation: "La manille est l'élément de liaison universel à bord : elle relie écoutes, drisses, voiles, ancres, etc.",
+    illustration: 'manille',
   },
   {
     id: 'q46', category: 'accastillage-manoeuvre', difficulty: 4, type: 'fill',
@@ -399,6 +430,7 @@ export const QUESTIONS = [
     answer: 'piano',
     correctAnswers: ['piano', 'le piano'],
     explanation: "Le « piano » regroupe les coinceurs côte à côte, comme les touches d'un piano, pour bloquer drisses et bosses de ris.",
+    illustration: 'cockpit', highlight: 'taquet',
   },
   {
     id: 'q47', category: 'accastillage-manoeuvre', difficulty: 4, type: 'text',
@@ -406,6 +438,7 @@ export const QUESTIONS = [
     answer: 'cunningham',
     correctAnswers: ['cunningham', 'le cunningham'],
     explanation: "Le cunningham retend le guindant pour aplatir la grand-voile dans la brise. Inventé par Briggs Cunningham.",
+    illustration: 'sail_anatomy', highlight: 'guindant',
   },
   {
     id: 'q48', category: 'interieur-securite', difficulty: 4, type: 'fill',
@@ -413,6 +446,7 @@ export const QUESTIONS = [
     answer: 'orin',
     correctAnswers: ['orin', "l'orin"],
     explanation: "L'orin est attaché au diamant de l'ancre. Il sert à signaler le mouillage et, si besoin, à dégager une ancre coincée.",
+    illustration: 'anchor', highlight: 'orin',
   },
   {
     id: 'q49', category: 'interieur-securite', difficulty: 4, type: 'text',
@@ -420,6 +454,7 @@ export const QUESTIONS = [
     answer: 'cambuse',
     correctAnswers: ['cambuse', 'la cambuse', 'kitchenette'],
     explanation: "La cambuse désigne le coin cuisine et le rangement des vivres. Sur un Garbi elle est minuscule, souvent un réchaud à cardan.",
+    illustration: 'interior', highlight: 'cambuse',
   },
   {
     id: 'q50', category: 'interieur-securite', difficulty: 4, type: 'fill',
@@ -427,6 +462,7 @@ export const QUESTIONS = [
     answer: 'corne',
     correctAnswers: ['corne', 'corne de brume'],
     explanation: "La corne de brume émet un signal sonore réglementé (un long, deux courts, etc.) pour signaler sa présence par visibilité réduite.",
+    illustration: 'corne_brume',
   },
 ];
 

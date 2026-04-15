@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Progress } from '@/components/ui/progress';
-import { Badge } from '@/components/ui/badge';
 import { CATEGORIES, DIFFICULTY_LABELS } from '@/data/questions.js';
 import {
   currentQuestion,
@@ -15,12 +14,7 @@ import {
 import { ILLUSTRATIONS } from '@/illustrations.js';
 import { cn } from '@/lib/utils';
 
-const TIER_BADGE = {
-  1: 'border-icy_aqua-300 text-icy_aqua-200 bg-icy_aqua-800',
-  2: 'border-light_blue-300 text-light_blue-200 bg-light_blue-800',
-  3: 'border-powder_blush-300 text-powder_blush-200 bg-powder_blush-800',
-  4: 'border-blue_slate-400 text-eggshell bg-blue_slate',
-};
+const TIER_ROMAN = { 1: 'I', 2: 'II', 3: 'III', 4: 'IV' };
 
 const FALLBACK_ILLUSTRATION = {
   'coque-pont': 'boat_overview',
@@ -232,27 +226,48 @@ export function Quiz({ session, onComplete, version }) {
     </div>
   );
 
-  return (
-    <section key={version + ':' + q.id} className="grid gap-5 animate-fade-in">
-      <Progress value={progressValue} />
+  const tierRoman = TIER_ROMAN[q.difficulty];
 
-      <div className="flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.14em] text-muted-foreground">
-        <span className="font-semibold text-foreground">
-          Question {index + 1} / {total}
-        </span>
-        <Badge variant="outline" className={cn('border', TIER_BADGE[q.difficulty])}>
-          Palier {q.difficulty} · {DIFFICULTY_LABELS[q.difficulty]}
-        </Badge>
-        <Badge variant="outline">{CATEGORIES[q.category]}</Badge>
-      </div>
+  return (
+    <section key={version + ':' + q.id} className="grid gap-6 animate-fade-in">
+      {/* MASTHEAD éditorial */}
+      <header className="grid gap-3">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <span className="eyebrow">
+            Question {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+          </span>
+          <span className="font-sans text-[0.65rem] uppercase tracking-[0.18em] text-muted-foreground">
+            {CATEGORIES[q.category]}
+          </span>
+        </div>
+        <div className="grid grid-cols-[auto_1fr] items-end gap-4 pb-2">
+          <span className="numeral text-[clamp(2.8rem,1.4rem+5vw,5rem)] leading-[0.85] text-blue_slate tabular-nums">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <div className="grid gap-1 pb-2">
+            <span className="font-sans text-[0.7rem] uppercase tracking-[0.16em] text-muted-foreground">
+              Palier {tierRoman} · {DIFFICULTY_LABELS[q.difficulty]}
+            </span>
+            <Progress value={progressValue} />
+          </div>
+        </div>
+        <hr className="editorial-rule editorial-rule-strong" />
+      </header>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10 items-start">
-        <Card className="overflow-hidden lg:sticky lg:top-6 self-start">
+        <figure className="m-0 lg:sticky lg:top-6 self-start">
           <div
-            className="aspect-[4/3] flex items-center justify-center p-6 bg-gradient-to-b from-icy_aqua-800/60 to-card [&>svg]:max-h-full [&>svg]:max-w-full [&>svg]:w-auto [&>svg]:h-auto"
-            dangerouslySetInnerHTML={{ __html: Illustration({ highlight: q.highlight }) }}
-          />
-        </Card>
+            className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(38,40,46,0.05),0_25px_60px_-30px_rgba(38,40,46,0.35)]"
+          >
+            <div
+              className="aspect-[4/3] flex items-center justify-center p-6 bg-gradient-to-br from-icy_aqua-800/70 via-card to-light_blue-800/40 [&>svg]:max-h-full [&>svg]:max-w-full [&>svg]:w-auto [&>svg]:h-auto"
+              dangerouslySetInnerHTML={{ __html: Illustration({ highlight: q.highlight }) }}
+            />
+          </div>
+          <figcaption className="mt-2 font-sans text-[0.65rem] uppercase tracking-[0.16em] text-muted-foreground text-right">
+            Pl. {tierRoman} — {CATEGORIES[q.category]}
+          </figcaption>
+        </figure>
         {content}
       </div>
     </section>
