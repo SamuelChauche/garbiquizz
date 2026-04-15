@@ -46,7 +46,6 @@ export function Quiz({ session, onComplete, version }) {
     setFeedback(null);
     setTextValue('');
     setSelected(null);
-    window.scrollTo({ top: 0, behavior: 'instant' });
     if (inputRef.current) {
       setTimeout(() => inputRef.current?.focus(), 80);
     }
@@ -237,7 +236,7 @@ export function Quiz({ session, onComplete, version }) {
   const tierRoman = TIER_ROMAN[q.difficulty];
 
   return (
-    <section key={version + ':' + q.id} className="grid gap-6 animate-fade-in">
+    <section className="grid gap-6">
       {/* MASTHEAD éditorial */}
       <header className="grid gap-3">
         <div className="flex items-center justify-between gap-4 flex-wrap">
@@ -249,7 +248,7 @@ export function Quiz({ session, onComplete, version }) {
           </span>
         </div>
         <div className="grid grid-cols-[auto_1fr] items-end gap-4 pb-2">
-          <span className="numeral text-[clamp(2.8rem,1.4rem+5vw,5rem)] leading-[0.85] text-blue_slate tabular-nums">
+          <span key={'num-' + version + ':' + q.id} className="numeral text-[clamp(2.8rem,1.4rem+5vw,5rem)] leading-[0.85] text-blue_slate tabular-nums animate-fade-in">
             {String(index + 1).padStart(2, '0')}
           </span>
           <div className="grid gap-1 pb-2">
@@ -268,7 +267,8 @@ export function Quiz({ session, onComplete, version }) {
             className="bg-card border border-border/60 rounded-2xl overflow-hidden shadow-[0_1px_2px_rgba(38,40,46,0.05),0_25px_60px_-30px_rgba(38,40,46,0.35)]"
           >
             <div
-              className="aspect-[4/3] flex items-center justify-center p-6 bg-gradient-to-br from-icy_aqua-800/70 via-card to-light_blue-800/40 [&>svg]:max-h-full [&>svg]:max-w-full [&>svg]:w-auto [&>svg]:h-auto"
+              key={'illu-' + version + ':' + q.id}
+              className="aspect-[4/3] flex items-center justify-center p-6 bg-gradient-to-br from-icy_aqua-800/70 via-card to-light_blue-800/40 [&>svg]:max-h-full [&>svg]:max-w-full [&>svg]:w-auto [&>svg]:h-auto animate-fade-in"
               dangerouslySetInnerHTML={{ __html: Illustration({ highlight: q.highlight }) }}
             />
           </div>
@@ -276,7 +276,9 @@ export function Quiz({ session, onComplete, version }) {
             Pl. {tierRoman} — {CATEGORIES[q.category]}
           </figcaption>
         </figure>
-        {content}
+        <div key={'content-' + version + ':' + q.id} className="animate-fade-in">
+          {content}
+        </div>
       </div>
 
       {feedbackPanel}
