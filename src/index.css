@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Palette mappée en HSL pour les tokens shadcn
+       Référence brute :
+         powder_blush: #ffa69e   → hsl(4 100% 81%)
+         powder_blush-300:#f81500 → hsl(5 100% 49%)
+         eggshell:     #faf3dd   → hsl(48 76% 92%)
+         eggshell-700: #fcf8ea   → hsl(48 80% 95%)
+         eggshell-200: #a38318   → hsl(46 75% 36%)
+         icy_aqua:     #b8f2e6   → hsl(168 70% 84%)
+         icy_aqua-800: #e3faf5   → hsl(166 70% 94%)
+         light_blue:   #aed9e0   → hsl(189 47% 78%)
+         light_blue-800:#def0f3  → hsl(189 53% 91%)
+         blue_slate:   #5e6472   → hsl(222 10% 41%)
+         blue_slate-200:#26282e  → hsl(225 9% 16%)
+         blue_slate-800:#bdc0c9  → hsl(220 10% 76%)
+    */
+
+    --background: 48 76% 92%;            /* eggshell */
+    --foreground: 225 9% 16%;            /* blue_slate-200 */
+
+    --card: 48 80% 96%;                  /* eggshell-700 lighter */
+    --card-foreground: 225 9% 16%;
+
+    --popover: 48 80% 96%;
+    --popover-foreground: 225 9% 16%;
+
+    --primary: 222 10% 41%;              /* blue_slate */
+    --primary-foreground: 48 76% 95%;    /* eggshell light */
+
+    --secondary: 189 47% 78%;            /* light_blue */
+    --secondary-foreground: 225 9% 16%;
+
+    --muted: 189 53% 91%;                /* light_blue-800 */
+    --muted-foreground: 222 10% 41%;     /* blue_slate */
+
+    --accent: 168 70% 84%;               /* icy_aqua */
+    --accent-foreground: 222 10% 25%;
+
+    --destructive: 5 100% 49%;           /* powder_blush-300 */
+    --destructive-foreground: 48 76% 95%;
+
+    --success: 168 60% 38%;
+    --success-foreground: 48 76% 95%;
+
+    --border: 220 10% 76%;               /* blue_slate-800 */
+    --input: 220 10% 76%;
+    --ring: 222 10% 41%;
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html, body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
+  }
+
+  body {
+    background:
+      radial-gradient(ellipse 1100px 500px at 50% -10%, hsl(168 70% 84% / 0.45), transparent 70%),
+      radial-gradient(ellipse 800px 400px at 100% 100%, hsl(189 47% 78% / 0.35), transparent 70%),
+      radial-gradient(ellipse 700px 400px at 0% 80%, hsl(4 100% 81% / 0.18), transparent 70%),
+      hsl(var(--background));
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3 {
+    @apply font-serif tracking-tight;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
