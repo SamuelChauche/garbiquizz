@@ -39,6 +39,10 @@
     @apply border-border;
   }
 
+  html {
+    scrollbar-gutter: stable;
+  }
+
   html, body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1, 'liga' 1;
