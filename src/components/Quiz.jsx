@@ -246,10 +246,10 @@ export function Quiz({ session, onComplete, version }) {
         <Badge variant="outline">{CATEGORIES[q.category]}</Badge>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-7 items-start">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:gap-10 items-start">
         <Card className="overflow-hidden lg:sticky lg:top-6 self-start">
           <div
-            className="aspect-[4/3] flex items-center justify-center p-5 bg-gradient-to-b from-icy_aqua-800/60 to-card [&>svg]:max-h-full [&>svg]:max-w-full [&>svg]:w-auto [&>svg]:h-auto"
+            className="aspect-[4/3] flex items-center justify-center p-6 bg-gradient-to-b from-icy_aqua-800/60 to-card [&>svg]:max-h-full [&>svg]:max-w-full [&>svg]:w-auto [&>svg]:h-auto"
             dangerouslySetInnerHTML={{ __html: Illustration({ highlight: q.highlight }) }}
           />
         </Card>

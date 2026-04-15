@@ -23,7 +23,7 @@ export default function App() {
   const complete = useCallback(() => setPhase('results'), []);
 
   return (
-    <main className="mx-auto w-full max-w-3xl px-5 py-10 md:py-16">
+    <main className="mx-auto w-full max-w-6xl px-5 py-10 md:py-16">
       {phase === 'home' && <Home onStart={start} />}
       {phase === 'quiz' && session && (
         <Quiz session={session} onComplete={complete} version={version} />
